@@ -1,5 +1,5 @@
 module.exports = {
-  extends: "airbnb-base",
+  extends: "eslint-config-airbnb",
   rules: {
     quotes: ["error", "double"],
     "no-console": "off"
