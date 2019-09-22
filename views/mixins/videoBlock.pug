@@ -1,0 +1,6 @@
+mixin videoBlock(video={})
+    div.videoBlock 
+        //- iframe(src=video.videoFile width="640" height="380" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+        video.videoBlock__thumbnail(src=video.videoFile, controls=true, width="600")
+        h4.videoBlock__title= video.title 
+        h6.videoBlock__views= video.views 
