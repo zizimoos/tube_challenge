@@ -3,8 +3,8 @@ extends layouts/main
 block content
     div.form__container
         form(action=`/video${routes.upload}`, method="post")
-            label(for="avatar") Video File
-            input(type="file", id="file", name="file")
-            input(type="text", placeholder="Titel", name="title")
-            textarea(name="description", placeholder="description")
+            label(for="avatar") YouTube URL
+            input(type="url", id="file", name="file", placeholder="write youtube url", required=true)
+            input(type="text", placeholder="Titel", name="title", required=true)
+            textarea(name="description", placeholder="description", required=true)
             input(type="submit", value="Upload Video")
