@@ -1,6 +1,5 @@
 mixin videoBlock(video={})
-    div.videoBlock 
-        
+    div.videoBlock    
         a(href=routes.videoDetail(video.id))
             iframe(src=video.videoFile width="640" height="380" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
             //- video.videoBlock__thumbnail(src=video.videoFile, controls=true, width="600")
