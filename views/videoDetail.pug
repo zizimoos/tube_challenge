@@ -1,5 +1,14 @@
 extends layouts/main
+include mixins/videoBlock
 
 block content
     div.form__container
         h1 VIDEO DETAIL
+        div.video__player 
+            video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=true, width="600")
+        div.video__info 
+            button 
+                a(href=routes.editVideo(video.id)) Edit Video         
+            h5.video__title=video.title 
+            span.video__views=video.views 
+            p.video__description=video.description

@@ -4,7 +4,7 @@ import routes from "../routes";
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({});
-    console.log(videos);
+    // console.log(videos);
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
@@ -33,17 +33,61 @@ export const postUpload = async (req, res) => {
     title,
     description
   });
-  console.log(newVideo);
+  // console.log(newVideo);
   res.redirect(routes.videoDetail(newVideo.id));
 };
 
-export const videoDetail = (req, res) =>
-  res.render("videoDetail", { pageTitle: "VideoDetail" });
+export const videoDetail = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    res.render("videoDetail", { pageTitle: video.title, video });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
 
-export const editVideo = (req, res) =>
+export const getEditVideo = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
+export const postEditVideo = async (req, res) => {
+  const {
+    params: { id },
+    body: { title, description }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    await Video.findOneAndUpdate({ _id: id }, { title, description }, video);
+    res.redirect(routes.videoDetail(id));
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
   res.render("editVideo", { pageTitle: "EditVideo" });
-
-export const deleteVideo = (req, res) =>
-  res.render("deleteVideo", { pageTitle: "DeleteVideo" });
+};
+export const deleteVideo = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    await Video.findOneAndRemove({ _id: id });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    res.redirect(routes.home);
+  }
+};
 
 export const video = (req, res) => res.redirect(route.home);
