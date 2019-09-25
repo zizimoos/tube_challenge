@@ -3,7 +3,7 @@ import routes from "../routes";
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({});
+    const videos = await Video.find({}).sort({ _id: -1 });
     // console.log(videos);
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
@@ -12,11 +12,19 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const {
-    query: { term }
+    query: { term: searchingBy }
   } = req;
-  res.render("search", { pageTitle: "Search", term, videos });
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchingBy, $options: "i" }
+    });
+    res.render("search", { pageTitle: "Search", searchingBy, videos });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getUpload = (req, res) => {
@@ -90,4 +98,4 @@ export const deleteVideo = async (req, res) => {
   }
 };
 
-export const video = (req, res) => res.redirect(route.home);
+export const video = (req, res) => res.redirect(routes.home);
