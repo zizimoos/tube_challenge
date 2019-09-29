@@ -16,7 +16,8 @@ main {
   min-height: 100vh;
 }
 button,
-input {
+input:not([type="file"]),
+.fileUpload {
   padding: 7px 10px;
   width: 100%;
   max-width: 320px;
@@ -25,6 +26,7 @@ input {
   font-size: 14px;
   color: $black;
   font-weight: 600;
+  background-color: whitesmoke;
   &::placeholder {
     font-weight: 300;
     color: rgba(0, 0, 0, 0.7);
@@ -36,3 +38,12 @@ button {
   border: none;
   color: whitesmoke;
 }
+button.changePassword,
+button.delete {
+  background-color: #e74c3c;
+  width: 320px;
+}
+// .fileUpload {
+//   background-color: whitesmoke;
+//   margin-bottom: 25px;
+// }
