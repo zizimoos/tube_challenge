@@ -5,10 +5,10 @@ const VideoSchema = new mongoose.Schema({
     type: String,
     required: "File URL is required"
   },
-  UTurl: {
-    type: String,
-    required: "File URL is required"
-  },
+  // UTurl: {
+  //   type: String,
+  //   required: "File URL is required"
+  // },
   title: {
     type: String,
     required: "Title is required"
