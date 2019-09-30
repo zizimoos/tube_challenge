@@ -2,7 +2,8 @@ extends layouts/main
 
 block content
     div.form__container
-        video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=true, width="600")
+        iframe(src=video.fileUrl  frameborder="0" width=600 height=320 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+        //- video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=true, width="600")
         form(action=routes.editVideo(video.id), method="post")
             label(for="avatar") Title
             input(type="text", placeholder="Titel", name="title", value=video.title)

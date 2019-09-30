@@ -3,8 +3,9 @@ include mixins/videoBlock
 
 block content
     div.video-Detail__container
-        div.video__player 
-            video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=true, width="600")
+        div.video__player
+            iframe(src=video.fileUrl  frameborder="0" width=600 height=320 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+            //- video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=true, width="600")
         div.video__info 
             
             a(href=routes.editVideo(video.id))

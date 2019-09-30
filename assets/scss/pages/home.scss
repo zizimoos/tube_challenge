@@ -1,21 +1,31 @@
-.home-videos {
+.home-videos,
+.search__videos {
   display: grid;
   grid-template-columns: repeat(6, minmax(200px, 1fr));
   grid-gap: 10px;
   height: 100%;
-  .videoBlock:first-child,
-  .videoBlock:nth-child(2) {
+  .videoBlock:first-child {
+    grid-column: 2/6;
+    iframe {
+      height: 467px;
+    }
+    margin-bottom: 40px;
+  }
+  .videoBlock:nth-child(2),
+  .videoBlock:nth-child(3) {
     grid-column: span 3;
     iframe {
-      height: 300px;
+      height: 360px;
     }
+    margin-bottom: 25px;
   }
-  .videoBlock:nth-child(3),
   .videoBlock:nth-child(4),
-  .videoBlock:nth-child(5) {
+  .videoBlock:nth-child(5),
+  .videoBlock:nth-child(6) {
     grid-column: span 2;
     iframe {
       height: 200px;
     }
+    margin-bottom: 25px;
   }
 }
