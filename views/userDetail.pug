@@ -1,6 +1,7 @@
 extends layouts/main
 
 block content
-    div.form__container
-        h1 USER DETAIL
-        
+    div.user-profile 
+        .user-profile__header 
+            img.avatar(src=user.avatarUrl)
+            h4.profile__username=user.name
