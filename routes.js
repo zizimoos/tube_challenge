@@ -9,6 +9,12 @@ const SEARCH = "/search";
 
 const GITHUB = "/auth/github";
 const GITHUB_CALLBACK = "/auth/github/callback";
+
+// Facebook
+
+const FACEBOOK = "/auth/facebook";
+const FACEBOOK_CALLBACK = "/auth/facebook/callback";
+
 // Users
 
 const USERS = "/users";
@@ -30,17 +36,20 @@ const routes = {
   join: JOIN,
   login: LOGIN,
   logout: LOGOUT,
+  users: USERS,
+
   github: GITHUB,
   githubCallback: GITHUB_CALLBACK,
+  facebook: FACEBOOK,
+  facebookCallback: FACEBOOK_CALLBACK,
   search: SEARCH,
-  users: USERS,
+
   userDetail: id => {
     if (id) {
       return `/users/${id}`;
     }
     return USER_DETAIL;
   },
-
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
   video: VIDEO,
