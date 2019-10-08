@@ -59,8 +59,7 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const editProfile = (req, res) =>
-  res.render("editProfile", { pageTitle: "EditProfile" });
+export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "EditProfile" });
 
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "ChangePassword" });
@@ -125,5 +124,37 @@ export const facebookLoginCallback = async (_, __, profile, cb) => {
 };
 
 export const postFacebookLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+// github
+
+export const googleLogin = passport.authenticate("google");
+
+export const googleLoginCallback = async (_, __, profile, cb) => {
+  console.log(profile);
+  const {
+    _json: { sub: id, picture: avatarUrl, name, email }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.googleId = id;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      googleId: id,
+      avatarUrl
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const postGoogleLogin = (req, res) => {
   res.redirect(routes.home);
 };

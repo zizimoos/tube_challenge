@@ -12,7 +12,9 @@ import {
   postGithubLogin,
   getMe,
   facebookLogin,
-  postFacebookLogin
+  postFacebookLogin,
+  googleLogin,
+  postGoogleLogin
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../localsMiddleware";
 
@@ -45,6 +47,15 @@ globalRouter.get(
   routes.facebookCallback,
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   postFacebookLogin
+);
+
+// google
+
+globalRouter.get(routes.google, googleLogin);
+globalRouter.get(
+  routes.googleCallback,
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  postGoogleLogin
 );
 
 globalRouter.get(routes.me, getMe);
