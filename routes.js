@@ -20,6 +20,11 @@ const FACEBOOK_CALLBACK = "/auth/facebook/callback";
 const GOOGLE = "/auth/google";
 const GOOGLE_CALLBACK = "/auth/google/callback";
 
+// kakao
+
+const KAKAO = "/kakao/google";
+const KAKAO_CALLBACK = "/auth/kakao/callback";
+
 // Users
 
 const USERS = "/users";
@@ -49,6 +54,8 @@ const routes = {
   facebookCallback: FACEBOOK_CALLBACK,
   google: GOOGLE,
   googleCallback: GOOGLE_CALLBACK,
+  kakao: KAKAO,
+  kakaoCallback: KAKAO_CALLBACK,
 
   search: SEARCH,
 

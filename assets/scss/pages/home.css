@@ -2,8 +2,8 @@
 .search__videos {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(200px, 1fr))[6];
-      grid-template-columns: repeat(6, minmax(200px, 1fr));
+  -ms-grid-columns: (minmax(200px, 1fr)) [6];
+  grid-template-columns: repeat(6, minmax(200px, 1fr));
   grid-gap: 10px;
   height: 100%;
 }
@@ -46,12 +46,18 @@
   margin-bottom: 25px;
 }
 
-.home-videos .videoBlock:nth-child(4) iframe,
-.home-videos .videoBlock:nth-child(5) iframe,
-.home-videos .videoBlock:nth-child(6) iframe,
-.search__videos .videoBlock:nth-child(4) iframe,
-.search__videos .videoBlock:nth-child(5) iframe,
-.search__videos .videoBlock:nth-child(6) iframe {
+.home-videos .videoBlock:nth-child(7) iframe,
+.home-videos .videoBlock:nth-child(8) iframe,
+.home-videos .videoBlock:nth-child(9) iframe,
+.home-videos .videoBlock:nth-child(10) iframe,
+.home-videos .videoBlock:nth-child(11) iframe,
+.home-videos .videoBlock:nth-child(12) iframe,
+.search__videos .videoBlock:nth-child(7) iframe,
+.search__videos .videoBlock:nth-child(8) iframe,
+.search__videos .videoBlock:nth-child(9) iframe,
+.search__videos .videoBlock:nth-child(10) iframe,
+.search__videos .videoBlock:nth-child(11) iframe,
+.search__videos .videoBlock:nth-child(12) iframe {
   height: 230px;
 }
 /*# sourceMappingURL=home.css.map */

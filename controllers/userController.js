@@ -59,7 +59,8 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "EditProfile" });
+export const getEditProfile = (req, res) =>
+  res.render("editProfile", { pageTitle: "EditProfile" });
 
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "ChangePassword" });
@@ -127,7 +128,7 @@ export const postFacebookLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
-// github
+// google
 
 export const googleLogin = passport.authenticate("google");
 
@@ -156,5 +157,41 @@ export const googleLoginCallback = async (_, __, profile, cb) => {
 };
 
 export const postGoogleLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+// google
+
+export const kakaoLogin = passport.authenticate("kakao");
+
+export const kakaoLoginCallback = async (_, __, profile, cb) => {
+  console.log(profile);
+  const {
+    _json: {
+      id,
+      properties: { nickname: name, profile_image: avatarUrl },
+      kakao_account: { email }
+    }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.kakaoId = id;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      kakaoId: id,
+      avatarUrl
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const postKakaoLogin = (req, res) => {
   res.redirect(routes.home);
 };

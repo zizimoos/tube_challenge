@@ -2,11 +2,13 @@ import passport from "passport";
 import GithubStrategy from "passport-github";
 import FacebookStrategy from "passport-facebook";
 import GoogleStrategy from "passport-google-oauth20";
+import KakaoStrategy from "passport-kakao";
 import User from "./models/User";
 import {
   githubLoginCallback,
   facebookLoginCallback,
-  googleLoginCallback
+  googleLoginCallback,
+  kakaoLoginCallback
 } from "./controllers/userController";
 import routes from "./routes";
 
@@ -46,6 +48,19 @@ passport.use(
       scope: ["profile", "email"]
     },
     googleLoginCallback
+  )
+);
+
+passport.use(
+  new KakaoStrategy(
+    {
+      clientID: "6b2c832c60392e1b2f7e1317feb54050",
+      clientSecret: " ",
+      callbackURL: `http://localhost:4000${routes.kakaoCallback}`,
+      // profileFields: ["id", "displayName", "photos", "email"],
+      scope: ["profile", "account_email "]
+    },
+    kakaoLoginCallback
   )
 );
 
