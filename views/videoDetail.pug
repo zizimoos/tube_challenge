@@ -7,10 +7,12 @@ block content
             iframe(src=video.fileUrl  frameborder="0" width=600 height=320 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
             //- video.videoBlock__thumbnail(src=`/${video.fileUrl}`, controls=true, width="600")
         div.video__info 
-            
-            a(href=routes.editVideo(video.id))
-                button  Edit Video         
-            h5.video__title Title : #{video.title} 
+            if video.creator.id === loggedUser.id
+                a(href=routes.editVideo(video.id))
+                    button  Edit Video         
+            h5.video__title Title : #{video.title}
+            h4.video__title Uploaded By  : 
+                a(href=routes.userDetail(video.creator.id))= video.creator.name
             p.video__description Description :  #{video.description}
             
             if video.views === 1
