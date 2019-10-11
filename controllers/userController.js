@@ -52,16 +52,15 @@ export const userDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const user = await User.findById(id);
-    console.log(user);
+    const user = await User.findById(id).populate("videos");
+    console.log("avatarUrl ======>", user.avatarUrl);
     res.render("userDetail", { pageTitle: "UserDetail", user });
   } catch (error) {
     res.redirect(routes.home);
   }
 };
 
-export const getEditProfile = (req, res) =>
-  res.render("editProfile", { pageTitle: "EditProfile" });
+export const getEditProfile = (req, res) => res.render("editProfile", { pageTitle: "EditProfile" });
 
 export const postEditProfile = async (req, res) => {
   const {

@@ -1,9 +1,13 @@
 extends layouts/main
+include mixins/videoBlock
 
 block content
     div.user-profile 
-        .user-profile__header 
-            img.u-avatar(src=`${user.avatarUrl}`)
+        .user-profile__header
+            if user.id === loggedUser.id
+                img.u-avatar(src=`${user.avatarUrl}`)
+            if user.id !== loggedUser.id
+                img.u-avatar(src=`/${user.avatarUrl.substr("6,str.length")}`)
             h4.profile__username=user.name
         if user.id === loggedUser.id 
             .user-profile__btns 
@@ -11,3 +15,11 @@ block content
                     button Edit Profile
                 a(href=`/users${routes.changePassword}`)
                     button Change Password
+        div.home-videos 
+            each item in user.videos
+                +videoBlock({
+                    id: item.id,
+                    videoFile: item.fileUrl,
+                    title: item.title,
+                    views: item.views
+                })

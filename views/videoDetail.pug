@@ -11,7 +11,7 @@ block content
                 a(href=routes.editVideo(video.id))
                     button  Edit Video         
             h5.video__title Title : #{video.title}
-            h4.video__title Uploaded By  : 
+            h4.video__author Uploaded By  : 
                 a(href=routes.userDetail(video.creator.id))= video.creator.name
             p.video__description Description :  #{video.description}
             
