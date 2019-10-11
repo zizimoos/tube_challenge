@@ -7,7 +7,7 @@ block content
             if user.id === loggedUser.id
                 img.u-avatar(src=`${user.avatarUrl}`)
             if user.id !== loggedUser.id
-                img.u-avatar(src=`/${user.avatarUrl.substr("6,str.length")}`)
+                img.u-avatar(src=`${user.avatarUrl.substr("6,str.length")}`)
             h4.profile__username=user.name
         if user.id === loggedUser.id 
             .user-profile__btns 
