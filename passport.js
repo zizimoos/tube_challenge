@@ -30,7 +30,8 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: `https://wonderful-warthog-64.localtunnel.me${routes.facebookCallback}`,
+      // callbackURL: `https://wonderful-warthog-64.localtunnel.me${routes.facebookCallback}`,
+      callbackURL: `http://localhost:4000${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
       scope: ["public_profile", "email"]
     },
