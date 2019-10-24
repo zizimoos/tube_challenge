@@ -55,7 +55,7 @@ passport.use(
 passport.use(
   new KakaoStrategy(
     {
-      clientID: "6b2c832c60392e1b2f7e1317feb54050",
+      clientID: process.env.KAKAO_CLIENT_ID,
       clientSecret: " ",
       callbackURL: `http://localhost:4000${routes.kakaoCallback}`,
       // profileFields: ["id", "displayName", "photos", "email"],
