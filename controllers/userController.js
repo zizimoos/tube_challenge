@@ -60,7 +60,8 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const getEditProfile = (req, res) => res.render("editProfile", { pageTitle: "EditProfile" });
+export const getEditProfile = (req, res) =>
+  res.render("editProfile", { pageTitle: "EditProfile" });
 
 export const postEditProfile = async (req, res) => {
   const {
