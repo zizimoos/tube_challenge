@@ -30,7 +30,8 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: `https://wonderful-warthog-64.localtunnel.me${routes.facebookCallback}`,
+      // callbackURL: `https://wonderful-warthog-64.localtunnel.me${routes.facebookCallback}`,
+      callbackURL: `http://localhost:4000${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
       scope: ["public_profile", "email"]
     },
@@ -54,7 +55,7 @@ passport.use(
 passport.use(
   new KakaoStrategy(
     {
-      clientID: "6b2c832c60392e1b2f7e1317feb54050",
+      clientID: process.env.KAKAO_CLIENT_ID,
       clientSecret: " ",
       callbackURL: `http://localhost:4000${routes.kakaoCallback}`,
       // profileFields: ["id", "displayName", "photos", "email"],
