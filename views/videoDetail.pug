@@ -33,5 +33,5 @@ block content
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse() 
                     li
-                        span.comment_writer #{loggedUser.email} :
+                        //- span.comment_writer #{loggedUser.email} :
                         span=comment.text
