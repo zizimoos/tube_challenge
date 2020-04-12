@@ -7,7 +7,7 @@ export const getJoin = (req, res) => {
 };
 export const postJoin = async (req, res, next) => {
   const {
-    body: { name, email, password, password1 }
+    body: { name, email, password, password1 },
   } = req;
   if (password !== password1) {
     res.status(400);
@@ -16,7 +16,7 @@ export const postJoin = async (req, res, next) => {
     try {
       const user = await User({
         name,
-        email
+        email,
       });
       await User.register(user, password);
       next();
@@ -33,7 +33,7 @@ export const getLogin = (req, res) => {
 
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
-  successRedirect: routes.home
+  successRedirect: routes.home,
 });
 
 export const logout = (req, res) => {
@@ -49,7 +49,7 @@ export const getMe = (req, res) => {
 
 export const userDetail = async (req, res) => {
   const {
-    params: { id }
+    params: { id },
   } = req;
   try {
     const user = await User.findById(id).populate("videos");
@@ -66,13 +66,13 @@ export const getEditProfile = (req, res) =>
 export const postEditProfile = async (req, res) => {
   const {
     body: { name, email },
-    file
+    file,
   } = req;
   try {
     await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
-      avatarUrl: file ? file.path : req.user.avatarUrl
+      avatarUrl: file ? file.path : req.user.avatarUrl,
     });
     res.redirect(routes.me);
   } catch (error) {
@@ -85,7 +85,7 @@ export const getChangePassword = (req, res) =>
 
 export const postChangePassword = async (req, res) => {
   const {
-    body: { oldPassword, newPassword, newPassword1 }
+    body: { oldPassword, newPassword, newPassword1 },
   } = req;
   console.log(oldPassword);
   try {
@@ -108,7 +108,7 @@ export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
   const {
-    _json: { id, avatar_url: avatarUrl, name, email }
+    _json: { id, avatar_url: avatarUrl, name, email },
   } = profile;
   try {
     const user = await User.findOne({ email });
@@ -121,7 +121,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
       email,
       name,
       githubId: id,
-      avatarUrl
+      avatarUrl,
     });
     return cb(null, newUser);
   } catch (error) {
@@ -139,7 +139,7 @@ export const facebookLogin = passport.authenticate("facebook");
 
 export const facebookLoginCallback = async (_, __, profile, cb) => {
   const {
-    _json: { id, name, email }
+    _json: { id, name, email },
   } = profile;
   try {
     const user = await User.findOne({ email });
@@ -153,7 +153,7 @@ export const facebookLoginCallback = async (_, __, profile, cb) => {
       email,
       name,
       facebookId: id,
-      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large`
+      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large`,
     });
     return cb(null, newUser);
   } catch (error) {
@@ -172,7 +172,7 @@ export const googleLogin = passport.authenticate("google");
 export const googleLoginCallback = async (_, __, profile, cb) => {
   console.log(profile);
   const {
-    _json: { sub: id, picture: avatarUrl, name, email }
+    _json: { sub: id, picture: avatarUrl, name, email },
   } = profile;
   try {
     const user = await User.findOne({ email });
@@ -185,7 +185,7 @@ export const googleLoginCallback = async (_, __, profile, cb) => {
       email,
       name,
       googleId: id,
-      avatarUrl
+      avatarUrl,
     });
     return cb(null, newUser);
   } catch (error) {
@@ -197,7 +197,7 @@ export const postGoogleLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
-// google
+// kakao
 
 export const kakaoLogin = passport.authenticate("kakao");
 
@@ -207,8 +207,8 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
     _json: {
       id,
       properties: { nickname: name, profile_image: avatarUrl },
-      kakao_account: { email }
-    }
+      kakao_account: { email },
+    },
   } = profile;
   try {
     const user = await User.findOne({ email });
@@ -221,7 +221,7 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
       email,
       name,
       kakaoId: id,
-      avatarUrl
+      avatarUrl,
     });
     return cb(null, newUser);
   } catch (error) {
